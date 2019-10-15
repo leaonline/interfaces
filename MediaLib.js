@@ -6,6 +6,23 @@ export const MediaLib = {
   isFilesCollection: true
 }
 
+MediaLib.routes = {}
+
+MediaLib.routes.mediaUrl = {
+  path: '/media/url',
+  methods: ['GET', 'OPTIONS'],
+  schema: {
+    _id: String
+  },
+  isPublic: true,
+  returns: {
+    contentType: 'application/json;UTF-8',
+    schema: {
+      url: String
+    }
+  }
+}
+
 MediaLib.publications = {}
 
 MediaLib.publications.all = {
