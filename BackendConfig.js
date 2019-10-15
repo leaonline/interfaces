@@ -10,17 +10,20 @@ const isContent = ({ type, name, label, description, schema, content }) => {
   return true
 }
 
-let _src = {}
+let _src
 
 export const BackendConfig = {}
 
 BackendConfig.init = function ({ label, description }) {
   check(label, Match.Maybe(String))
   check(description, Match.Maybe(String))
+  _src = {}
   _src = { label, description, content: [] }
 }
 
 BackendConfig.add = function (content) {
+  // TODO make dynamic check
+  if (!_src) BackendConfig.init({})
   _src.content.push(content)
 }
 
