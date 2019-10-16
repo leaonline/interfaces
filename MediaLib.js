@@ -1,6 +1,6 @@
 export const MediaLib = {
   name: 'mediaLib',
-  label: 'mediaLb.title',
+  label: 'mediaLib.title',
   icon: 'images',
   appId: 'content',
   isFilesCollection: true
