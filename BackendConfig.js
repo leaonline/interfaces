@@ -15,6 +15,12 @@ let _langs = {}
 
 export const BackendConfig = {}
 
+BackendConfig.types = {
+  list: 'list',
+  form: 'form',
+  children: 'children'
+}
+
 BackendConfig.init = function ({ icon, label, description }) {
   check(icon, String)
   check(label, String)
