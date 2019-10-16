@@ -11,33 +11,29 @@ const isContent = ({ type, name, label, description, schema, content }) => {
 }
 
 let _src
-const labelStore = {}
-
-function registerLabel (keyPath, labelStr) {
-  
-}
-
-function resolveLabels (lang) {
-
-}
+let _langs = {}
 
 export const BackendConfig = {}
 
-BackendConfig.init = function ({ label, description }) {
-  check(label, Match.Maybe(String))
+BackendConfig.init = function ({ icon, label, description }) {
+  check(icon, String)
+  check(label, String)
   check(description, Match.Maybe(String))
   _src = {}
-  _src = { label, description, content: [] }
+  _src = { icon, label, description, content: [] }
+}
+
+BackendConfig.addLang = function (locale, config) {
+  _langs[ locale ] = config
 }
 
 BackendConfig.add = function (content) {
-  // TODO make dynamic check
-  if (!_src) BackendConfig.init({})
+  if (!_src) throw new Error('[BackendConfig] not initialized')
   _src.content.push(content)
 }
 
 BackendConfig.get = function (lang) {
-  resolveLabels(lang)
+  _src.lang = _langs[ lang ]
   return _src
 }
 
