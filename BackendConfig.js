@@ -11,6 +11,15 @@ const isContent = ({ type, name, label, description, schema, content }) => {
 }
 
 let _src
+const labelStore = {}
+
+function registerLabel (keyPath, labelStr) {
+  
+}
+
+function resolveLabels (lang) {
+
+}
 
 export const BackendConfig = {}
 
@@ -27,7 +36,8 @@ BackendConfig.add = function (content) {
   _src.content.push(content)
 }
 
-BackendConfig.get = function () {
+BackendConfig.get = function (lang) {
+  resolveLabels(lang)
   return _src
 }
 
@@ -35,11 +45,15 @@ BackendConfig.methods = {}
 
 BackendConfig.methods.get = {
   name: 'backendConfig.methods.get',
-  schema: {},
+  schema: {
+    lang: {
+      type: String
+    }
+  },
   isPublic: true,
   numRequests: 1,
   timeInterval: 1000,
-  run: function () {
-    return BackendConfig.get()
+  run: function ({ lang }) {
+    return BackendConfig.get(lang)
   }
 }
