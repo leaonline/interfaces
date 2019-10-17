@@ -18,7 +18,8 @@ export const BackendConfig = {}
 BackendConfig.types = {
   list: 'list',
   form: 'form',
-  children: 'children'
+  children: 'children',
+  gallery: 'gallery'
 }
 
 BackendConfig.init = function ({ icon, label, description }) {
