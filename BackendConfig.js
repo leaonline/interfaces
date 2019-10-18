@@ -19,7 +19,8 @@ BackendConfig.types = {
   list: 'list',
   form: 'form',
   children: 'children',
-  gallery: 'gallery'
+  gallery: 'gallery',
+  document: 'document'
 }
 
 BackendConfig.init = function ({ icon, label, description }) {
