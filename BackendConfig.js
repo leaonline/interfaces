@@ -40,6 +40,16 @@ BackendConfig.add = function (content) {
   _src.content.push(content)
 }
 
+function replacer (name, val) {
+  if (typeof val === 'function') {
+    return val.prototype.constructor.name
+  } else {
+    return val
+  }
+}
+
+BackendConfig.replacer = replacer
+
 BackendConfig.get = function (lang) {
   _src.lang = _langs[ lang ]
   return _src
