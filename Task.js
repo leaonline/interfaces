@@ -1,8 +1,7 @@
 import { Dimensions } from './Dimensions'
 import { Levels } from './Levels'
 import { Status } from './Status'
-
-const toOption = entry => ({ value: entry.name, label: entry.label })
+import {toOption} from './utils'
 
 const dimensionOptions = Object.values(Dimensions).map(toOption)
 const levelOptions = Object.values(Levels).map(toOption)
