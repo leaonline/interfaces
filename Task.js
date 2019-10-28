@@ -3,9 +3,9 @@ import { Levels } from './Levels'
 import { Status } from './Status'
 import {toOption} from './utils'
 
-const dimensionOptions = Object.values(Dimensions).map(toOption)
-const levelOptions = Object.values(Levels).map(toOption)
-const statusOptions = Object.values(Status).map(toOption)
+const dimensionOptions = Object.values(Dimensions.types).map(toOption)
+const levelOptions = Object.values(Levels.types).map(toOption)
+const statusOptions = Object.values(Status.types).map(toOption)
 
 export const Task = {
   name: 'task',
@@ -19,13 +19,14 @@ Task.schema = {
   status: {
     type: String,
     label: 'status.title',
-    defaultValue: Status.inProgress.name,
+    defaultValue: Status.types.inProgress.name,
     autoform: {
       firstOption: false,
       options: statusOptions
     }
   },
   taskId: {
+    name: 'taskId',
     type: String,
     label: 'task.taskId'
   },
