@@ -1,4 +1,17 @@
 export const Status = {
+  name: 'status',
+  label: 'status.title',
+  icon: 'cubes'
+}
+
+Status.helpers = {}
+
+Status.helpers.resolveField = function (name) {
+  const type = Status.types[name]
+  return type && type.label
+}
+
+const types = {
   inProgress: {
     index: 0,
     name: 'inProgress',
@@ -24,3 +37,5 @@ export const Status = {
     type: 'success'
   }
 }
+
+Status.types = types
