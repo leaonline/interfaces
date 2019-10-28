@@ -23,6 +23,17 @@ BackendConfig.types = {
   document: 'document'
 }
 
+BackendConfig.fieldTypes = {
+  keyMap: 'keyMap',
+  context: 'context',
+  collection: 'collection'
+}
+
+BackendConfig.filterTypes = {
+  publication: 'publication',
+  postPublication: 'postPublication'
+}
+
 BackendConfig.init = function ({ icon, label, description }) {
   check(icon, String)
   check(label, String)
