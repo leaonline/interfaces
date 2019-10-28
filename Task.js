@@ -98,3 +98,19 @@ Task.schema = {
 Task.collection = () => {
   throw new Error('Not implemented - You need to override this method to be able to use it.')
 }
+
+Task.httpRoutes = {}
+
+Task.httpRoutes.byTaskId = {
+  name: 'task.httpRoutes.byTaskId',
+  path: '/task',
+  method: 'get',
+  schema: {
+    taskId: String
+  },
+  projection: {},
+  numRequests: 10,
+  timeInterval: 1000
+}
+
+Task.helpers = {}
