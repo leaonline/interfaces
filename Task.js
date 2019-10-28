@@ -85,7 +85,10 @@ Task.schema = {
     optional: true,
     label: 'task.pages'
   },
-  'pages.$': Array,
+  'pages.$': {
+    type: Array,
+    label: 'tasks.page',
+  },
   'pages.$.$': {
     type: Object,
     blackbox: true
