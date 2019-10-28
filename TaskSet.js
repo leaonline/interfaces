@@ -3,8 +3,8 @@ import { toOption } from './utils'
 import { Levels } from './Levels'
 import { Task } from './Task'
 
-const dimensionOptions = Object.values(Dimensions).map(toOption)
-const levelOptions = Object.values(Levels).map(toOption)
+const dimensionOptions = Object.values(Dimensions.types).map(toOption)
+const levelOptions = Object.values(Levels.types).map(toOption)
 
 export const TaskSet = {
   name: 'taskSet',
