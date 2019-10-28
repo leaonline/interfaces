@@ -1,6 +1,19 @@
-export const Dimensions = {}
+export const Dimensions = {
+  name: 'dimensions',
+  label: 'dimensions.title',
+  icon: 'cubes'
+}
 
-Dimensions.writing = {
+Dimensions.helpers = {}
+
+Dimensions.helpers.resolveField = function (value) {
+  const type = Dimensions.types[value]
+  return type && type.label
+}
+
+const types = {}
+
+types.writing = {
   name: 'writing',
   label: 'dimensions.writing.title',
   icon: 'pen-alt',
@@ -13,7 +26,7 @@ Dimensions.writing = {
   }
 }
 
-Dimensions.reading = {
+types.reading = {
   name: 'reading',
   label: 'dimensions.reading.title',
   icon: 'book-open',
@@ -26,7 +39,7 @@ Dimensions.reading = {
   }
 }
 
-Dimensions.math = {
+types.math = {
   name: 'math',
   label: 'dimensions.math.title',
   icon: 'calculator',
@@ -39,7 +52,7 @@ Dimensions.math = {
   }
 }
 
-Dimensions.understand = {
+types.understand = {
   name: 'understand',
   label: 'dimensions.understand.title',
   icon: 'comments',
@@ -51,3 +64,5 @@ Dimensions.understand = {
     hard: 'dimensions.understand.hard'
   }
 }
+
+Dimensions.types = types
