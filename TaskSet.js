@@ -53,7 +53,7 @@ TaskSet.httpRoutes = {}
 
 TaskSet.httpRoutes.all = {
   name: 'taskSet.httpRoutes.all',
-  path: '/task/set/all',
+  path: '/taskset/all',
   method: 'get',
   schema: {},
   projection: {},
