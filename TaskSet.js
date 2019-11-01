@@ -34,15 +34,14 @@ TaskSet.schema = {
       options: {
         collectionName: Task.name,
         query: {
-          dimension: 1,
-          level: 1
+          dimension: 1
         },
         map: {
           valueSrc: '_id',
           labelSrc: 'taskId'
         },
         projection: {
-          sort: { itemId: 1 }
+          sort: { taskId: 1 }
         }
       }
     }

@@ -1,10 +1,8 @@
 import { Dimensions } from './Dimensions'
-import { Levels } from './Levels'
 import { Status } from './Status'
 import {toOption} from './utils'
 
 const dimensionOptions = Object.values(Dimensions.types).map(toOption)
-const levelOptions = Object.values(Levels.types).map(toOption)
 const statusOptions = Object.values(Status.types).map(toOption)
 
 export const Task = {
@@ -16,13 +14,12 @@ export const Task = {
 }
 
 Task.schema = {
-  status: {
+  dimension: {
+    name: 'dimension',
     type: String,
-    label: 'status.title',
-    defaultValue: Status.types.inProgress.name,
+    label: 'dimensions.dimension',
     autoform: {
-      firstOption: false,
-      options: statusOptions
+      options: dimensionOptions
     }
   },
   taskId: {
@@ -30,27 +27,22 @@ Task.schema = {
     type: String,
     label: 'task.taskId'
   },
-  dimension: {
+  legacyId: {
+    name: 'legacyId',
     type: String,
-    label: 'dimensions.dimension',
-    autoform: {
-      options: dimensionOptions
-    }
+    label: 'task.legacyId'
   },
-  level: {
+  title: {
     type: String,
-    label: 'levels.level',
-    autoform: {
-      options: levelOptions
-    }
+    label: 'common.title'
   },
-  description: {
+  status: {
     type: String,
-    label: 'common.description',
-    optional: true,
+    label: 'status.title',
+    defaultValue: Status.types.inProgress.name,
     autoform: {
-      type: 'textarea',
-      rows: 4
+      firstOption: false,
+      options: statusOptions
     }
   },
   story: {
