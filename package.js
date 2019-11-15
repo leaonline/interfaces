@@ -1,3 +1,4 @@
+/* eslint-env meteor */
 Package.describe({
   name: 'leaonline:interfaces',
   version: '1.0.0',

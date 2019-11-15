@@ -12,7 +12,7 @@ export const Competency = {
 Competency.schema = {
   competencyId: {
     type: String,
-    label: 'competency.competencyId',
+    label: 'competency.competencyId'
   },
   dimension: {
     type: String,
@@ -38,7 +38,6 @@ Competency.schema = {
     }
   }
 }
-
 
 Competency.helpers = {}
 Competency.methods = {}

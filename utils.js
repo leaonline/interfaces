@@ -1,3 +1,5 @@
+/* global AutoForm */
+
 export const toOption = entry => ({ value: entry.name, label: entry.label })
 
 export const isVisible = (fieldName, expectedTypes) => {

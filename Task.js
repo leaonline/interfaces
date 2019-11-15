@@ -1,6 +1,6 @@
 import { Dimensions } from './Dimensions'
 import { Status } from './Status'
-import {toOption} from './utils'
+import { toOption } from './utils'
 
 const dimensionOptions = Object.values(Dimensions.types).map(toOption)
 const statusOptions = Object.values(Status.types).map(toOption)
@@ -79,7 +79,7 @@ Task.schema = {
   },
   'pages.$': {
     type: Array,
-    label: 'tasks.page',
+    label: 'tasks.page'
   },
   'pages.$.$': {
     type: Object,

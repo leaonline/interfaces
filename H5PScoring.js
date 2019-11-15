@@ -15,7 +15,7 @@ H5PScoring.types.fillInTheBlanks = {
           return [
             { value: 'word', label: 'responseType.word' },
             { value: 'symbol', label: 'responseType.symbol' },
-            { value: 'sentence', label: 'responseType.sentence' },
+            { value: 'sentence', label: 'responseType.sentence' }
           ]
         }
       }
@@ -63,7 +63,7 @@ H5PScoring.types.fillInTheBlanks = {
     exceptionBeginSentence: {
       type: String,
       optional: true
-    },
+    }
   },
   item: {
     competency: {
@@ -86,11 +86,11 @@ H5PScoring.types.fillInTheBlanks = {
             case 'word':
               return [
                 { value: 'caseSensitivity', label: 'itemType.caseSensitivity' },
-                { value: 'pattern', label: 'itemType.pattern' },
+                { value: 'pattern', label: 'itemType.pattern' }
               ]
             case 'symbol':
               return [
-                { value: 'symbol', label: 'itemType.symbol' },
+                { value: 'symbol', label: 'itemType.symbol' }
               ]
             case 'sentence':
               return [
@@ -98,7 +98,7 @@ H5PScoring.types.fillInTheBlanks = {
                 { value: 'first', label: 'itemType.first' },
                 { value: 'punctuationSentence', label: 'itemType.punctuationSentence' },
                 { value: 'caseSensitivitySentence', label: 'itemType.caseSensitivitySentence' },
-                { value: 'patternSentence', label: 'itemType.patternSentence' },
+                { value: 'patternSentence', label: 'itemType.patternSentence' }
               ]
             default:
               throw new Error(`Unkown type ${type}`)
@@ -117,7 +117,7 @@ H5PScoring.types.fillInTheBlanks = {
       autoform: {
         options: []
       }
-    },
+    }
 
   }
 }
