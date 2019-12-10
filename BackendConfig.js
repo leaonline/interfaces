@@ -1,5 +1,6 @@
 import { check, Match } from 'meteor/check'
 
+/*
 const isObject = x => typeof x === 'object' && x !== null
 const isContent = ({ type, name, label, description, schema, content }) => {
   check(type, String)
@@ -9,9 +10,10 @@ const isContent = ({ type, name, label, description, schema, content }) => {
   check(content, Match.Where(isContent))
   return true
 }
+*/
 
 let _src
-let _langs = {}
+const _langs = {}
 
 export const BackendConfig = {}
 
@@ -43,7 +45,7 @@ BackendConfig.init = function ({ icon, label, description }) {
 }
 
 BackendConfig.addLang = function (locale, config) {
-  _langs[ locale ] = config
+  _langs[locale] = config
 }
 
 BackendConfig.add = function (content) {
@@ -62,7 +64,7 @@ function replacer (name, val) {
 BackendConfig.replacer = replacer
 
 BackendConfig.get = function (lang) {
-  _src.lang = _langs[ lang ]
+  _src.lang = _langs[lang]
   return _src
 }
 
