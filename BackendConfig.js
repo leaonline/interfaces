@@ -12,8 +12,17 @@ const isContent = ({ type, name, label, description, schema, content }) => {
 }
 */
 
-let _src
-const _langs = {}
+const cache = new Map()
+const langs = new Map()
+
+const getSrc = () => {
+  return {
+    icon: cache.get('icon'),
+    label: cache.get('label'),
+    description: cache.get('description'),
+    content: cache.get('content')
+  }
+}
 
 export const BackendConfig = {}
 
@@ -40,17 +49,22 @@ BackendConfig.init = function ({ icon, label, description }) {
   check(icon, String)
   check(label, String)
   check(description, Match.Maybe(String))
-  _src = {}
-  _src = { icon, label, description, content: [] }
+  cache.set('icon', icon)
+  cache.set('label', label)
+  cache.set('description', description)
+  cache.set('content', [])
+  cache.set('initialized', true)
 }
 
 BackendConfig.addLang = function (locale, config) {
-  _langs[locale] = config
+  langs.set(locale, config)
 }
 
 BackendConfig.add = function (content) {
-  if (!_src) throw new Error('[BackendConfig] not initialized')
-  _src.content.push(content)
+  if (!cache.get('initialized')) throw new Error('[BackendConfig] not initialized')
+  const _content = cache.get('content')
+  _content.push(content)
+  cache.set('content', _content)
 }
 
 function replacer (name, val) {
@@ -64,8 +78,10 @@ function replacer (name, val) {
 BackendConfig.replacer = replacer
 
 BackendConfig.get = function (lang) {
-  _src.lang = _langs[lang]
-  return _src
+  if (!cache.get('initialized')) throw new Error('[BackendConfig] not initialized')
+  const src = getSrc()
+  src.lang = langs.get(lang)
+  return src
 }
 
 BackendConfig.methods = {}
@@ -77,7 +93,6 @@ BackendConfig.methods.get = {
       type: String
     }
   },
-  isPublic: true,
   numRequests: 1,
   timeInterval: 1000,
   run: function ({ lang }) {
