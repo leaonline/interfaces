@@ -1,41 +1,49 @@
-import { Dimensions } from './Dimensions'
-import { toOption } from './utils'
-
-const dimensionOptions = Object.values(Dimensions.types).map(toOption)
+import { Dimension } from './Dimension'
 
 export const Competency = {
   name: 'competency',
   label: 'competency.title',
-  icon: 'star'
+  icon: 'star',
+  representative: 'shortCode'
 }
 
 Competency.schema = {
-  competencyId: {
+  [Competency.representative]: {
     type: String,
-    label: 'competency.competencyId'
+    max: 6
   },
   dimension: {
     type: String,
-    label: 'dimensions.dimension',
-    autoform: {
-      options: dimensionOptions
+    dependency: {
+      collection: Dimension.name,
+      field: Dimension.representative
     }
   },
-  descriptionTeacher: {
+  description: {
     type: String,
-    label: 'competency.descriptionTeacher',
-    autoform: {
-      type: 'textarea',
-      rows: 4
-    }
+    max: 1000
   },
-  descriptionLearner: {
+  descriptionSimple: {
     type: String,
-    label: 'competency.descriptionLearner',
-    autoform: {
-      type: 'textarea',
-      rows: 4
-    }
+    max: 1000
+  },
+  shortCode_legacy: {
+    type: String,
+    optional: true,
+    list: false,
+    max: 10
+  },
+  description_legacy: {
+    type: String,
+    optional: true,
+    list: false,
+    max: 1000
+  },
+  descriptionSimple_legacy: {
+    type: String,
+    optional: true,
+    list: false,
+    max: 1000
   }
 }
 

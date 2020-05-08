@@ -1,9 +1,10 @@
 export const MediaLib = {
   name: 'mediaLib',
+  collectionName: 'mediaLib',
+  isFilesCollection: true,
   label: 'mediaLib.title',
   icon: 'images',
   appId: 'content',
-  isFilesCollection: true
 }
 
 MediaLib.collection = function () {
@@ -43,6 +44,7 @@ MediaLib.publications.all = {
   roles: ['readMediaContent'],
   group: 'content',
   run: function () {
+    console.log('mediaLib' , MediaLib.collection().find().count())
     return MediaLib.collection().find()
   }
 }

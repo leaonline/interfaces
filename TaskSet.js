@@ -51,11 +51,7 @@ TaskSet.schema = {
 TaskSet.httpRoutes = {}
 
 TaskSet.httpRoutes.all = {
-  name: 'taskSet.httpRoutes.all',
   path: '/taskset/all',
   method: 'get',
-  schema: {},
-  projection: {},
-  numRequests: 10,
-  timeInterval: 1000
+  schema: {}
 }

@@ -94,15 +94,11 @@ Task.collection = () => {
 Task.httpRoutes = {}
 
 Task.httpRoutes.byTaskId = {
-  name: 'task.httpRoutes.byTaskId',
   path: '/task',
   method: 'get',
   schema: {
     taskId: String
-  },
-  projection: {},
-  numRequests: 10,
-  timeInterval: 1000
+  }
 }
 
 Task.helpers = {}
