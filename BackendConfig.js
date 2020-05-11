@@ -28,27 +28,43 @@ function extract (source = {}, { schemaStr }) {
 function getDependencies (schema) {
   const dependencies = new Set()
   Object.values(schema).forEach(field => {
-    if (field.dependency) dependencies.add(field.dependency.collection)
+    if (!field.dependency) return
+    if (field.dependency.collection) dependencies.add(field.dependency.collection)
+    if (field.dependency.context) dependencies.add(field.dependency.context)
   })
   return Array.from(dependencies)
 }
 
-const clean = (context) => {
-  const dependencies = getDependencies(context.schema)
-  const schemaStr = JSON.stringify(context.schema, BackendConfig.replacer, 0)
-  const translated = {
+function clean (context) {
+  const cleaned = {
     name: context.name,
     label: context.label,
     icon: context.icon,
-    dependencies: dependencies,
     isFilesCollection: !!context.isFilesCollection,
     isConfigDoc: !!context.isConfigDoc,
-    type: context.type || getConfigType(context),
-    schema: context.schema,
-    methods: extract(context.methods, { schemaStr }),
-    publications: extract(context.publications, { schemaStr })
+    isType: !!context.isType
   }
-  return JSON.stringify(translated, BackendConfig.replacer, 0)
+
+  if (context.schema) {
+    cleaned.schema = context.schema
+    cleaned.dependencies = getDependencies(context.schema)
+
+    const schemaStr = JSON.stringify(context.schema, BackendConfig.replacer, 0)
+
+    if (context.methods) {
+      cleaned.methods = extract(context.methods, { schemaStr })
+    }
+
+    if (context.publications) {
+      cleaned.publications = extract(context.publications, { schemaStr })
+    }
+  }
+
+  if (context.types) {
+    cleaned.types = context.types
+  }
+
+  return JSON.stringify(cleaned, BackendConfig.replacer, 0)
 }
 
 export const BackendConfig = {}
@@ -58,7 +74,8 @@ BackendConfig.types = {
   form: 'form',
   children: 'children',
   gallery: 'gallery',
-  document: 'document'
+  document: 'document',
+  typeView: 'typeView'
 }
 
 BackendConfig.fieldTypes = {
@@ -125,14 +142,4 @@ BackendConfig.methods.get = {
   run: function ({ lang }) {
     return BackendConfig.get(lang)
   }
-}
-
-function getConfigType (context) {
-  if (context.isFilesCollection) {
-    return BackendConfig.types.gallery
-  }
-  if (context.isConfigDoc) {
-    return BackendConfig.types.document
-  }
-  return BackendConfig.types.list
 }
