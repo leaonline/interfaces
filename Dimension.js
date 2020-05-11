@@ -1,5 +1,5 @@
-import { Icon } from './types/Icon'
 import { ColorType } from './types/ColorType'
+import { Status } from './types/Status'
 
 export const Dimension = {}
 
@@ -9,6 +9,14 @@ Dimension.icon = 'th-large'
 Dimension.representative = 'title'
 
 Dimension.schema = {
+  status: {
+    type: Number,
+    allowedValues: Status.allowedValues,
+    dependency: {
+      context: Status.name,
+      field: Status.representative
+    }
+  },
   [Dimension.representative]: {
     type: String
   },
@@ -20,8 +28,12 @@ Dimension.schema = {
     type: String
   },
   colorType: {
-    type: String,
-    allowedValues: ColorType.allowedValues
+    type: Number,
+    allowedValues: ColorType.allowedValues,
+    dependency: {
+      context: ColorType.name,
+      field: ColorType.representative
+    }
   },
   shortCode: {
     type: String,
