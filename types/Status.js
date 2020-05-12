@@ -37,4 +37,4 @@ Status.types = {
   }
 }
 
-Status.allowedValues = Object.keys(Status.types)
+Status.allowedValues = Object.values(Status.types).map(entry => entry[Status.representative])

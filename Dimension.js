@@ -1,5 +1,6 @@
 import { ColorType } from './types/ColorType'
 import { Status } from './types/Status'
+import { Labels } from './common/Labels'
 
 export const Dimension = {}
 
@@ -11,6 +12,7 @@ Dimension.representative = 'title'
 Dimension.schema = {
   status: {
     type: Number,
+    label: Status.label,
     allowedValues: Status.allowedValues,
     dependency: {
       context: Status.name,
@@ -22,13 +24,16 @@ Dimension.schema = {
   },
   description: {
     type: String,
+    label: Labels.description,
     optional: true
   },
   icon: {
-    type: String
+    type: String,
+    label: Labels.icon
   },
   colorType: {
     type: Number,
+    label: ColorType.label,
     allowedValues: ColorType.allowedValues,
     dependency: {
       context: ColorType.name,
@@ -37,12 +42,14 @@ Dimension.schema = {
   },
   shortCode: {
     type: String,
+    label: Labels.shortCode,
     min: 1,
     max: 1,
     unique: true
   },
   shortNum: {
     type: Number,
+    label: Labels.shortNum,
     min: 1,
     max: 1,
     unique: true

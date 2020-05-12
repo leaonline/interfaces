@@ -42,7 +42,8 @@ function clean (context) {
     icon: context.icon,
     isFilesCollection: !!context.isFilesCollection,
     isConfigDoc: !!context.isConfigDoc,
-    isType: !!context.isType
+    isType: !!context.isType,
+    representative: context.representative
   }
 
   if (context.schema) {

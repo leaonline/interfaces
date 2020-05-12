@@ -1,4 +1,5 @@
 import { Dimension } from './Dimension'
+import { Labels } from './common/Labels'
 
 export const Competency = {
   name: 'competency',
@@ -10,10 +11,12 @@ export const Competency = {
 Competency.schema = {
   [Competency.representative]: {
     type: String,
+    label: Labels[Competency.representative],
     max: 6
   },
   dimension: {
     type: String,
+    label: Dimension.label,
     dependency: {
       collection: Dimension.name,
       field: Dimension.representative
@@ -21,6 +24,7 @@ Competency.schema = {
   },
   description: {
     type: String,
+    label: Labels.description,
     max: 1000
   },
   descriptionSimple: {
