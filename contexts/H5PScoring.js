@@ -1,7 +1,7 @@
 import { Competency } from './Competency'
 import { getCollection } from '../utils/lib/collection'
-import { isVisible } from './utils'
 
+const isVisible = () => {}
 export const H5PScoring = {}
 
 H5PScoring.types = {}

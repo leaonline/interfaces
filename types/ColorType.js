@@ -3,7 +3,8 @@ export const ColorType = {
   label: 'colorType.title',
   icon: 'palette',
   isType: true,
-  representative: 'index'
+  representative: 'index',
+  useHistory: false
 }
 
 ColorType.types = {

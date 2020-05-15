@@ -1,23 +1,35 @@
+import { Status } from '../types/Status'
+import { Labels } from '../common/Labels'
+
 export const Field = {}
 
 Field.name = 'field'
 Field.label = 'field.title'
 Field.icon = 'wrench'
+Field.representative = 'title'
+Field.useHistory = true
 
 Field.schema = {
-  title: String,
+  status: {
+    type: Number,
+    label: Status.label,
+    allowedValues: Status.allowedValues,
+    defaultValue: Status.defaultValue,
+    dependency: {
+      context: Status.name,
+      field: Status.representative
+    }
+  },
+  [Field.representative]: {
+    type: String,
+    label: Labels[Field.representative]
+  },
   shortCode: {
-    label: 'model.shortCode',
+    label: Labels.shortCode,
     type: String,
     min: 2,
     max: 2,
-    custom: function () {
-      const context = this
-      const { value } = context
-      if (!context.isSet || !value || value.length !== 2 || value !== value.toUpperCase() || Field.collection().findOne({ shortCode: value })) {
-        return 'invalid'
-      }
-    }
+    unique: true
   },
   jobs: {
     type: Array,
@@ -26,6 +38,7 @@ Field.schema = {
   },
   'jobs.$': {
     type: String,
-    label: 'common.entry'
+    label: Labels.entry,
+    list: false
   }
 }

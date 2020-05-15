@@ -3,7 +3,8 @@ export const Status = {
   label: 'status.title',
   icon: 'cubes',
   isType: String,
-  representative: 'index'
+  representative: 'index',
+  useHistory: false
 }
 
 Status.types = {
@@ -38,3 +39,4 @@ Status.types = {
 }
 
 Status.allowedValues = Object.values(Status.types).map(entry => entry[Status.representative])
+Status.defaultValue = Status.types.inProgress[Status.representative]

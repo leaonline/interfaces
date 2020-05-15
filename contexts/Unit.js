@@ -1,37 +1,54 @@
+import { Labels } from '../common/Labels'
+import { Status } from '../types/Status'
+
 export const Unit = {}
 
 Unit.name = 'unit'
 Unit.label = 'unit.title'
 Unit.icon = 'cube'
+Unit.representative = 'shortCode'
+Unit.useHistory = true
 
-const baseSchema = {
-  unitSet: {
-    type: String
+Unit.schema = {
+  status: {
+    type: Number,
+    label: {
+      name: Status.label,
+      list: false,
+      form: true,
+      preview: true
+    },
+    allowedValues: Status.allowedValues,
+    defaultValue: Status.defaultValue,
+    dependency: {
+      context: Status.name,
+      field: Status.representative
+    }
   },
-  shortCode: {
-    type: String
+  [Unit.representative]: {
+    type: String,
+    label: Labels[Unit.representative]
   },
   legacyId: {
-    name: 'legacyId',
     type: String,
-    label: 'unit.legacyId'
+    optional: true
   },
   title: {
     type: String,
-    label: 'common.title'
+    label: Labels.title
   },
   story: {
     type: Array,
-    label: 'unit.story',
-    optional: true
+    optional: true,
+    list: false
   },
   'story.$': {
     type: Object
   },
   stimuli: {
     type: Array,
-    label: 'unit.stimuli',
-    optional: true
+    optional: true,
+    list: false
   },
   'stimuli.$': {
     type: Object,
@@ -39,7 +56,7 @@ const baseSchema = {
   instructions: {
     type: Array,
     optional: true,
-    label: 'unit.instructions'
+    list: false
   },
   'instructions.$': {
     type: Object,
@@ -47,11 +64,10 @@ const baseSchema = {
   pages: {
     type: Array,
     optional: true,
-    label: 'unit.pages'
+    list: false
   },
   'pages.$': {
-    type: Array,
-    label: 'units.page'
+    type: Array
   },
   'pages.$.$': {
     type: Object
@@ -70,13 +86,4 @@ const stimuliPageSchema = pageSchema('stimuli.$')
 const instructionsPageSchema = pageSchema('instructions.$')
 const pagesPageSchema = pageSchema('pages.$.$')
 
-Unit.schema = ({ autoform }) => {
-  const schema = Object.assign({}, baseSchema, storyPageSchema, stimuliPageSchema, instructionsPageSchema, pagesPageSchema)
-  if (autoform) {
-    schema.story.autoform = autoform
-    schema.stimuli.autoform = autoform
-    schema.instructions.autoform = autoform
-    schema['pages.$'].autoform = autoform
-  }
-  return schema
-}
+Object.assign({}, Unit.schema, storyPageSchema, stimuliPageSchema, instructionsPageSchema, pagesPageSchema)
