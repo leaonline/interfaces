@@ -1,7 +1,6 @@
 import { Field } from './Field'
 import { Status } from '../types/Status'
 import { Dimension } from '../contexts/Dimension'
-import { Unit } from './Unit'
 import { Labels } from '../common/Labels'
 import { getFieldName } from '../utils/getFieldName'
 
@@ -16,12 +15,7 @@ UnitSet.useHistory = true
 UnitSet.schema = {
   status: {
     type: Number,
-    label: {
-      name: Status.label,
-      list: false,
-      form: true,
-      preview: true
-    },
+    label: Status.label,
     allowedValues: Status.allowedValues,
     defaultValue: Status.defaultValue,
     dependency: {
@@ -51,7 +45,11 @@ UnitSet.schema = {
           collection: Dimension.name,
           field: getFieldName(Dimension.schema, Dimension.schema.shortNum)
         },
-        { type: 'increment', decimals: 3, collection: UnitSet.name }
+        {
+          type: 'increment',
+          decimals: 3,
+          collection: UnitSet.name
+        }
       ]
     }
   },
@@ -86,20 +84,23 @@ UnitSet.schema = {
       field: Dimension.representative
     }
   },
+  dimensionShort: {
+    type: String,
+    label: Dimension.label,
+    value: {
+      method: 'concat',
+      input: [
+        {
+          type: 'field',
+          source: 'dimension',
+          collection: Dimension.name,
+          field: getFieldName(Dimension.schema, Dimension.schema.shortCode)
+        }
+      ]
+    }
+  },
   level: {
     type: String,
     optional: true
-  },
-  units: {
-    type: Array,
-    optional: true,
-    list: false
-  },
-  'units.$': {
-    type: String,
-    dependency: {
-      collection: Unit.name,
-      field: Unit.representative
-    }
   }
 }
