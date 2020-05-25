@@ -39,7 +39,11 @@
   },
   "unit": {
     "title":"Unit",
-    "legacyId": "Id-Alt"
+    "legacyId": "Id-Alt",
+    "story": "Kontextuelle Einleitung",
+    "stimuli": "Stimulus",
+    "instructions": "Arbeitsanweisungen",
+    "pages": "Aufgabenseiten"
   },
   "unitSet": {
     "title":"Unit-Set"
