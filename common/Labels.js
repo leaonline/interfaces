@@ -4,5 +4,6 @@ export const Labels = {
   icon: 'common.icon',
   shortCode: 'common.shortCode',
   shortNum: 'common.shortNum',
-  entry: 'common.entry'
+  entry: 'common.entry',
+  text: 'common.text'
 }
